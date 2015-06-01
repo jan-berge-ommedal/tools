@@ -1,0 +1,11 @@
+#!/bin/bash
+source $(dirname $0)/common.sh
+set -e
+
+
+expectParameters 1 "usage: authorize <host>" "$@"
+
+HOST=$1
+PUBLIC_KEY=`cat ~/.ssh/id_rsa.pub`
+ssh ${HOST} "mkdir .ssh/ && grep -q '${PUBLIC_KEY}' .ssh/authorized_keys || echo '${PUBLIC_KEY}' >>.ssh/authorized_keys"
+
