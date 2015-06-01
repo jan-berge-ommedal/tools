@@ -1,0 +1,16 @@
+.idea
+.project
+.settings
+.classpath
+*.iml
+rebel.xml
+target/
+apps/test.java
+apps/test.xml
+apps/test2.xml
+apps/test3.xml
+apps/test.json
+apps/test.js
+apps/todo.txt
+apps/test.txt
+askdomain/

@@ -1,0 +1,108 @@
+[core]
+	filemode = false
+	autocrlf = false
+[user]
+	email = jan.ommedal@sparebank1.no
+	name = Jan Berge Ommedal
+[color]
+	ui = auto
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[core]
+	excludesfile = ./.gitignore
+	editor = vim
+[merge]
+	defaultToUpstream = false
+[push]
+	default = current
+[alias]
+	# COMMIT/STAGE ALIASES
+	a = !git add --patch "$1" && git ss
+	aa = !git add --all && git ss
+	au = !"git add $(git ls-files -o --exclude-standard)" && git ss
+	amend = !git commit --amend && git ss
+	c = !~/software/git-scripts/commit.sh
+	cb = !~/software/git-scripts/commitWithBranchName.sh
+	commitmerge = commit -F .git/MERGE_MSG
+	cl = !git reset && git checkout -f && git clean -f -d
+	co = !git checkout --patch -- . && git ss
+	undolastcommit = !echo "Undoing commit..." && git reset --soft HEAD^ && echo "Success!" && git ss
+	deletelastcommit = !echo "Deleting commit..." && git reset --hard HEAD^ && echo "Success!" && git ss
+	unstage = !git reset --patch && git ss
+	showlastcommit = git show
+	diffaschanges = !git merge $1 --squash
+	
+	# BRANCHING/MERGING ALIASES
+	b = !echo "Displaying branches:" && git branch -av
+	createbranch = !git branch $1 && git checkout $1
+	deletebranch = !git branch -d $1 && git b && /dev/null
+	# example: git copycommits-to-master 3 = copy last three commits to master
+	movecommits = !git createbranch "temporaryRebaseBranch" && git rebase -i --onto newMaster $1
+	bn = !git branch | grep ^* | cut -d' ' -f2
+	cp = !~/sync/git-scripts/cherry-pick.sh
+	m = !git merge --stat "$1" && echo "Merged!" && echo && git ss
+	ff = !git merge --ff-only --stat "$1" && echo "Merged!" && echo && git ss
+	resolved = add -u && git s
+	resetunmerged = !"git reset $(git diff --name-only --diff-filter=U)" && git s
+	sw = !git checkout -m $1 -- && git s
+	showunmergedbranches = branch --all --verbose --no-merged
+	showmergedbranches = branch --all --verbose --merged
+	continuerebase = rebase --continue
+	abortrebase = rebase --abort
+	branchcontains = !git branch --contains "$1"
+	
+	# PUSH/PULL ALIASES
+	f = fetch --prune
+	p = push
+	pl = !git pull --ff-only
+	pullall = !~/software/git-scripts/pullAll.sh
+	
+	# TAGS
+	createtag = tag
+	deletetag = tag -d
+	
+	# STASH ALIASES
+	applystash = stash apply
+	popstash = stash pop
+	dropstash = stash drop
+	showstash = stash show -p
+	liststash = stash list
+	st = stash -u
+	stashunstaged = stash -u --keep-index
+	
+	# LOG/STATISTICS ALIASES
+	d2 = diff --cached --staged
+	d = diff --stat
+	s = !echo && echo && echo "Displaying status..." && git ss && echo && echo && git l
+	ss = status
+	g = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset) %h' --all
+	h = for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format='%(objectname)%09%(committerdate:relative)%09%(authorname)%09%(refname:short)%09%(subject)'
+	l = log --graph --pretty='format:%Cred%h%Creset %C(yellow)%an%Creset%C(red)%d%Creset %s %Cgreen%ar%Creset' -n 14
+	ll = log --graph --pretty='format:%Cred%h%Creset %C(yellow)%an%Creset%C(red)%d%Creset %s %Cgreen%ar%Creset'
+	lll = log --pretty='format:%Cred%h%Creset %C(yellow)%an%Creset (%Cgreen%ar%Creset) %s' --stat -n 10git 
+	llll = log --pretty='format:%Cred%h%Creset %C(yellow)%an%Creset (%Cgreen%ar%Creset) %s' --stat
+	my = log --all --no-merges --pretty='format:%Cred%h%Creset %C(yellow)%an%Creset%C(red)%d%Creset %s %Cgreen%ar%Creset' --author Jan
+	find = !git ll | grep
+	rank = shortlog -s -n --no-merges
+	hot = !git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -20
+	allchanges = !git log --all $1
+	
+	remotes = remote -v
+	deleteremote = !git remote rm $1 && echo "removed..."
+	
+	# chmod = !git update-index --chmod=+x -- $1 && /dev/null
+	
+	#UTIL ALIASES
+	aliases = !git config --list | grep alias | cut -c 7-
+	create-patch = !~/software/git-scripts/create-patch.sh
+	create-pull-request = !sh -c 'stash pull-request $0'
+	
+	deleteremotebranch = !~/software/git-scripts/deleteRemoteBranch.sh
+	pushcurrentbranchtoorigin = !git push origin `git rev-parse --abbrev-ref HEAD`
+	
+	## push private +2080cdb^:all #delete 2080cdb of branch 'all' on remote 'private'
+	## push private :all #delete 'all' on remote 'private'
+
