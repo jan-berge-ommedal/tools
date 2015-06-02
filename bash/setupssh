@@ -1,0 +1,3 @@
+mkdir -p ~/.ssh
+echo "IdentityFile /data/ssh/id_rsa" > ~/.ssh/config
+echo "UserKnownHostsFile /data/ssh/known_hosts" >> ~/.ssh/config

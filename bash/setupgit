@@ -1,0 +1,11 @@
+
+GITCONFIG=~/.gitconfig
+GIT_DIR=/data/tools/git
+
+touch ${GITCONFIG}
+echo "[include]" > ${GITCONFIG}
+echo "    path = ${GIT_DIR}/.gitconfig" >> ${GITCONFIG}
+
+echo "[core]" >> ${GITCONFIG}
+echo "    excludesfile = ${GIT_DIR}/.gitignore" >> ${GITCONFIG}
+
