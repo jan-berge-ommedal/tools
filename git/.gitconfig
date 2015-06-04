@@ -14,10 +14,14 @@
 [core]
 	excludesfile = ./.gitignore # does not work on windows. Configure in local .gitconfig file after include
 	editor = vim
+[branch]
+	autosetupmerge = always
 [merge]
 	defaultToUpstream = false
 [push]
-	default = current
+	default = simple 
+[pull]
+	default = simple 
 [alias]
 	# COMMIT/STAGE ALIASES
 	a = !git add --patch "$1" && git ss
