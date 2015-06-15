@@ -1,9 +1,18 @@
+
+
+IDE FILES
+=========
 .idea
 .project
 .settings
 .classpath
 *.iml
 rebel.xml
+
+
+
+ASK
+=========
 target/
 apps/test.java
 apps/test.xml
@@ -13,4 +22,11 @@ apps/test.json
 apps/test.js
 apps/todo.txt
 apps/test.txt
-askdomain/
+
+
+
+MISC
+=========
+.DS_Store
+
+
