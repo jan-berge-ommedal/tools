@@ -14,14 +14,10 @@
 [core]
 	excludesfile = ./.gitignore # does not work on windows. Configure in local .gitconfig file after include
 	editor = vim
-[branch]
-	autosetupmerge = always
-[merge]
-	defaultToUpstream = false
 [push]
-	default = simple 
+	default = current 
 [pull]
-	default = simple 
+	default = current  
 [alias]
 	# COMMIT/STAGE ALIASES
 	a = !git add --patch "$1" && git ss
@@ -46,7 +42,7 @@
 	# example: git copycommits-to-master 3 = copy last three commits to master
 	movecommits = !git createbranch "temporaryRebaseBranch" && git rebase -i --onto newMaster $1
 	bn = !git branch | grep ^* | cut -d' ' -f2
-	cp = !~/sync/git-scripts/cherry-pick.sh
+	cp = cherry-pick -n -x
 	m = !git merge --stat "$1" && echo "Merged!" && echo && git ss
 	ff = !git merge --ff-only --stat "$1" && echo "Merged!" && echo && git ss
 	resolved = add -u && git s
@@ -59,9 +55,9 @@
 	branchcontains = !git branch --contains "$1"
 	
 	# PUSH/PULL ALIASES
-	f = fetch --prune
+	f = fetch --prune --all
 	p = push
-	pl = pull --ff-only
+	pl = ! git pull --ff-only && git submodule init && git submodule update
 	pullall = !~/software/git-scripts/pullAll.sh
 	
 	# TAGS
