@@ -9,3 +9,4 @@ HOST=$1
 PUBLIC_KEY=`cat ~/.ssh/id_rsa.pub`
 ssh ${HOST} "mkdir -p .ssh/ && touch .ssh/authorized_keys  && grep -q '${PUBLIC_KEY}' .ssh/authorized_keys || echo '${PUBLIC_KEY}' >>.ssh/authorized_keys"
 
+echo "authorized"
