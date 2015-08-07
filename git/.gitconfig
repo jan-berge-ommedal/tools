@@ -44,7 +44,7 @@
 	bn = !git branch | grep ^* | cut -d' ' -f2
 	cp = cherry-pick -n -x
 	m = !git merge --stat "$1" && echo "Merged!" && echo && git ss
-	ff = !git merge --ff-only --stat "$1" && echo "Merged!" && echo && git ss
+	ff = !git fetch && git merge --ff-only --stat "$1" && echo "Merged!" && echo && git ss
 	resolved = add -u && git s
 	resetunmerged = !"git reset $(git diff --name-only --diff-filter=U)" && git s
 	sw = !git checkout -m $1 -- && git s
