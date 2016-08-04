@@ -1,8 +1,9 @@
 
 
-IDE FILES
-=========
-.idea
+# IDE FILES
+# ==========
+.idea/*
+!.idea/runConfigurations/
 .project
 .settings
 .classpath
@@ -11,8 +12,8 @@ rebel.xml
 
 
 
-ASK
-=========
+# ASK
+# ===========
 target/
 apps/test.java
 apps/test.xml
@@ -25,8 +26,8 @@ apps/test.txt
 
 
 
-MISC
-=========
+# MISC
+# =========
 .DS_Store
 
 

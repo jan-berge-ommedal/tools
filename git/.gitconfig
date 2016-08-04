@@ -24,10 +24,11 @@
 	aa = !git add --all && git ss
 	au = !"git add $(git ls-files -o --exclude-standard)" && git ss
 	amend = !git commit --amend && git ss
+	redocommit = !git commit --amend --no-edit && git ss
 	c = !~/software/git-scripts/commit.sh
 	cb = !~/software/git-scripts/commitWithBranchName.sh
 	commitmerge = commit -F .git/MERGE_MSG
-	cl = !git reset && git checkout -f && git clean -f -d
+	cl = !git reset && git checkout -f && git clean -f -d &&  git submodule update
 	co = !git checkout --patch -- . && git ss
 	undolastcommit = !echo "Undoing commit..." && git reset --soft HEAD^ && echo "Success!" && git ss
 	deletelastcommit = !echo "Deleting commit..." && git reset --hard HEAD^ && echo "Success!" && git ss
